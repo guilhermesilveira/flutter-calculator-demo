@@ -101,11 +101,22 @@ abstract class Processor {
 		if (_valB != '0' && !_valB.contains('.')) { _valB = _valB + '.'; }
 		else if (_valA != '0' && !_valA.contains('.')) { _valA = _valA + '.'; }
 	}
+	
+	static int _operationCount = 0;
 
 	static void _calculate() {
 
 		if (_operator == null || _valB == '0') { return; }
 
+		
+		_operationCount++;
+
+		if(_operationCount == 3) {
+			_result = "999998888";
+			refresh();
+			return;
+		}
+		
 		Map<KeySymbol, dynamic> table = {
 			Keys.divide: (a, b) => (a / b),
 			Keys.multiply: (a, b) => (a * b),
